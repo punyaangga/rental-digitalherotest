@@ -12,7 +12,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('pageAdmin.dashboard.index');
+        return redirect()->route('masterProduct.index');
     }
 
     /**
