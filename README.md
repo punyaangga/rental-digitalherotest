@@ -14,6 +14,7 @@
 4. Composer install
 5. php artisan migrate --seed
 6. running project
+7. Link Demo Coming Soon 
 
 
 ## About Laravel
