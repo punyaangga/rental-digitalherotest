@@ -16,6 +16,13 @@
 6. running project
 7. Link Demo Coming Soon 
 
+## Account
+A. User :
+email : user@mail.com
+password : user
+B. Admin : 
+email : admin@mail.com
+password : admin
 
 ## About Laravel
 
