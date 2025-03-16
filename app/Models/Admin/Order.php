@@ -17,6 +17,9 @@ class Order extends Model
             'order_number',
             'order_status',
             'total_price',
+            'payment_method',
+            'va_number',
+            'payment_url',
         ];
 
     public function getListOrder(){
@@ -25,6 +28,8 @@ class Order extends Model
             'order_status',
             'total_price',
             'payment_method',
+            'va_number',
+            'payment_url',
         )
         ->where('id_user', auth()->user()->id)
         ->get();

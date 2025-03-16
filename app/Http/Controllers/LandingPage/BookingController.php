@@ -26,12 +26,13 @@ class BookingController extends Controller
         $getStatus = $this->globalData->statusPayment->checkPaymentStatus($orderId);
         $responseArray = json_decode($getStatus->getContent(), true);
         $va = data_get($responseArray, 'data.va_numbers.0.va_number', 'unknown');
+        $bank = data_get($responseArray, 'data.va_numbers.0.bank', 'unknown');
         $transactionStatus = data_get($responseArray, 'data.transaction_status', 'unknown');
-        $this->update($orderId,$va,$transactionStatus);
+        $this->update($orderId,$va,$transactionStatus,$bank);
         return view('booking.index', compact('data'));
 
     }
-    public function update($orderNumber,$va,$status){
+    public function update($orderNumber,$va,$status,$bank){
         switch ($status) {
             case 'settlement':
                 $status = 'payment success';
@@ -54,7 +55,9 @@ class BookingController extends Controller
         }
         Order::where('order_number', $orderNumber)->update([
             'order_status' => $status,
-            'va_number' => $va
+            'va_number' => $va,
+            'payment_method' => $bank,
+
 
         ]);
     }

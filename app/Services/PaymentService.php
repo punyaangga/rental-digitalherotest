@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Admin\Order;
 use Midtrans\Config;
 use Midtrans\Snap;
 use Illuminate\Http\Request;
@@ -24,8 +25,8 @@ class PaymentService
             ],
             'callbacks' => [
                 'finish' => env('MIDTRANS_FINISH_URL'),
-                'unfinish' => env('MIDTRANS_UNFINISH_URL'),
-                'error' => env('MIDTRANS_ERROR_URL'),
+                'unfinish' => env('MIDTRANS_FINISH_URL'),
+                'error' => env('MIDTRANS_FINISH_URL'),
             ],
         ];
 
@@ -38,7 +39,11 @@ class PaymentService
 
             // Cek jika response sukses
             if ($response->successful()) {
+
                 $redirectUrl = env('MIDTRANS_REDIRECT_URL') . $response->json('token');
+                Order::where('order_number', $orderId)->update([
+                    'payment_url' => $redirectUrl,
+                ]);
                 return redirect()->away($redirectUrl);
             } else {
                 return response()->json(['error' => 'Failed to get token'], 500);

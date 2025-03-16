@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('order_status', ['waiting payment','pending','expire','failure','payment success', 'canceled', 'completed']);
             $table->integer('total_price');
             $table->string('payment_method')->nullable();
+            $table->string('payment_url')->nullable();
             $table->timestamps();
         });
     }
