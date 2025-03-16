@@ -23,16 +23,16 @@ class PaymentService
                 'secure' => true,
             ],
             'callbacks' => [
-            'finish' => env('MIDTRANS_FINISH_URL'),
-            'unfinish' => env('MIDTRANS_UNFINISH_URL'),
-            'error' => env('MIDTRANS_ERROR_URL'),
-        ],
+                'finish' => env('MIDTRANS_FINISH_URL'),
+                'unfinish' => env('MIDTRANS_UNFINISH_URL'),
+                'error' => env('MIDTRANS_ERROR_URL'),
+            ],
         ];
 
         try {
             $midtransUrl = env('MIDTRANS_SNAP_URL');
             // Kirim request ke Midtrans
-            $response = Http::withBasicAuth(config('midtrans.server_key'), '')
+            $response = Http::withBasicAuth(env('MIDTRANS_SERVER_KEY'), '')
             ->acceptJson()
             ->post($midtransUrl, $payload);
 

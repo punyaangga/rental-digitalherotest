@@ -161,6 +161,9 @@ class ChartController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $order = DetailOrder::find($id);
+        $order->delete();
+        return response()->json(['success' => true]);
+
     }
 }

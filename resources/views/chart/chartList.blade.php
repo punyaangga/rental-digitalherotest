@@ -53,9 +53,17 @@
                                             <input type="time" name="detail_order_time_end[]" class="form-control booking-end" data-index="{{ $index }}" required>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12" style="float: right;">
+                                            <button type="button" class="btn btn-danger btn-sm delete-item" data-id="{{ $detailOrder['id'] }}">Hapus</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+
                         </div>
+
 
                 @endforeach
 
@@ -83,7 +91,9 @@
                     <strong>Total</strong>
                     <strong class="price" id="total">Rp 0</strong>
                 </div>
+
                 <button class="btn btn-success w-100 mt-3">Checkout</button>
+                <a href="{{route('index')}}" class="btn btn-primary w-100 mt-3">Kembali</a>
             </div>
         </div>
     </form>
@@ -150,6 +160,33 @@
     });
 
     updateTotal();
+
+    document.querySelectorAll(".delete-item").forEach(button => {
+        button.addEventListener("click", function () {
+            let itemId = this.dataset.id;
+            let cardElement = this.closest(".card");
+
+            if (confirm("Apakah Anda yakin ingin menghapus item ini dari keranjang?")) {
+                fetch(`/chart/${itemId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        cardElement.remove(); // Hapus elemen dari DOM
+                        updateTotal(); // Perbarui total harga
+                    } else {
+                        alert("Gagal menghapus item.");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+            }
+        });
+    });
 });
 
 </script>
