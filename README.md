@@ -7,12 +7,14 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Information Release V1.0
-1. Sweetalert
-2. Notification alert
-3. CRUD Text Only
-4. Datatables using yajra
-5. Reusable function of datatables
+## How To Install 
+1. Clone this project
+2. Create database using name rental
+3. Change file .env-example to .env
+4. Composer install
+5. php artisan migrate --seed
+6. running project
+
 
 ## About Laravel
 
