@@ -37,6 +37,8 @@ class DetailOrder extends Model
         ->leftJoin('master_products','detail_orders.id_product','=','master_products.id')
         ->leftJoin('categories','master_products.id_category','=','categories.id')
         ->leftJoin('master_prices','categories.id','=','master_prices.id_categories')
+        ->where('detail_orders.created_by',auth()->user()->id)
+        ->where('detail_orders.do_status','chart')
         ->get();
     }
 
