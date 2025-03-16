@@ -18,6 +18,7 @@
                             <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                                 <li class="nav-item"><a href="{{ route('index') }}" class="nav-link">Home</a></li>
                                 <li class="nav-item active"><a href="{{ route('chart.index') }}" class="nav-link">Chart</a></li>
+                                <li class="nav-item active"><a href="{{ route('booking.index') }}" class="nav-link">Booking List</a></li>
                             </ul>
 
                             <!-- Tombol Logout hanya muncul jika user login -->

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\MasterProductController;
 use App\Http\Controllers\Admin\StockProductController;
 use App\Http\Controllers\Admin\StockProductRelationController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LandingPage\BookingController;
 use App\Http\Controllers\LandingPage\ChartController;
 use App\Http\Controllers\LandingPage\landingPageController;
 use App\Http\Controllers\PaymentController;
@@ -39,7 +40,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::resource('chart', ChartController::class);
-    Route::post('/midtrans/token', [PaymentController::class, 'getToken']);
+    Route::resource('booking', BookingController::class);
 
 
 });

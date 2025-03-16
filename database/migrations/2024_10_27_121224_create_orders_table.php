@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('id_user');
             $table->string('order_number');
             $table->text('va_number')->nullable();
-            $table->enum('order_status', ['waiting payment', 'payment success', 'canceled', 'completed']);
+            $table->enum('order_status', ['waiting payment','pending','expire','failure','payment success', 'canceled', 'completed']);
             $table->integer('total_price');
             $table->string('payment_method')->nullable();
             $table->timestamps();

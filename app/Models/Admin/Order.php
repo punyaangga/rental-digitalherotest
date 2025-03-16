@@ -19,4 +19,15 @@ class Order extends Model
             'total_price',
         ];
 
+    public function getListOrder(){
+        return $this->select(
+            'order_number',
+            'order_status',
+            'total_price',
+            'payment_method',
+        )
+        ->where('id_user', auth()->user()->id)
+        ->get();
+    }
+
 }

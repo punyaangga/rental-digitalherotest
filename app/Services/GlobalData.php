@@ -5,7 +5,7 @@ use App\Models\Admin\Category;
 use App\Models\Admin\DetailOrder;
 use App\Models\Admin\MasterPrice;
 use App\Models\Admin\MasterProduct;
-
+use App\Models\Admin\Order;
 
 class GlobalData{
     public $datatableService;
@@ -14,6 +14,8 @@ class GlobalData{
     public $dataPrice;
     public $dataDetailOrder;
     public $payment;
+    public $dataOrder;
+    public $statusPayment;
 
 
     public function __construct(){
@@ -23,6 +25,8 @@ class GlobalData{
         $this->dataPrice = new MasterPrice();
         $this->dataDetailOrder = new DetailOrder();
         $this->payment = new PaymentService();
+        $this->dataOrder = new Order();
+        $this->statusPayment = new StatusPaymentService();
 
     }
 }
